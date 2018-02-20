@@ -1,0 +1,122 @@
+"  vim-hackernews
+"  --------------
+"  Browse Hacker News (news.ycombinator.com) inside Vim.
+"
+"  Author:  ryanss <ryanssdev@icloud.com>
+"  Website: https://github.com/ryanss/vim-hackernews
+"  License: MIT (see LICENSE file)
+"  Version: 0.3-dev
+
+Execute (Test Plugin Loaded):
+  AssertEqual 1, filereadable('doc/hackernews.txt')
+  AssertEqual 1, filereadable('ftplugin/hackernews.py')
+  AssertEqual 1, filereadable('ftplugin/hackernews.vim')
+  AssertEqual 1, filereadable('plugin/hackernews.vim')
+  AssertEqual 1, filereadable('syntax/hackernews.vim')
+  redir @a
+  au BufRead *.hackernews
+  redir @b
+  au BufNewFile *.hackernews
+  redir @c
+  command HackerNews
+  redir END
+
+Do (Test autocmd BufRead *.hackernews):
+  "apdd
+
+Expect (set filetype=hackernews):
+  --- Auto-Commands ---
+  BufRead
+      *.hackernews
+                set filetype=hackernews
+
+Do (Test autocmd BufNewFile *.hackernews):
+  "bpdd
+
+Expect (set filetype=hackernews):
+  --- Auto-Commands ---
+  BufNewFile
+      *.hackernews
+                set filetype=hackernews
+
+Do (Test HackerNews Defined):
+  "cpdddd
+  :%s/ \{2,}/ /g\<cr>
+
+Expect (HackerNews Defined):
+   HackerNews ? call HackerNews(<q-args>)
+
+Execute (Test HackerNews Command):
+  HackerNews
+
+Then (Test Front Page):
+  AssertEqual getline(1), '┌───┐'
+  AssertEqual getline(2), '│ Y │ Hacker News (news.ycombinator.com)'
+  AssertEqual getline(3), '└───┘'
+  AssertEqual 'Comment', SyntaxAt(5,2),  'Item number syntax'
+  AssertEqual 'Comment', SyntaxAt(6,5),  'Point/user/comment line syntax'
+  AssertEqual '', SyntaxAt(5,5),         'Item title syntax'
+
+Do (Test Key Mappings):
+  :HackerNews\<cr>
+  ggVGd
+  :redir @a\<cr>
+  :map o\<cr>
+  :map O\<cr>
+  :map gx\<cr>
+  :map u\<cr>
+  :map <C-R>\<cr>
+  "apdd
+  :%s/^.*Netrw.*$\n//g\<cr>
+
+Expect (Keys Mapped):
+     o           *@:Python hackernews.link()<CR>
+     O           *@:Python hackernews.link(external=True)<CR>
+     gx          *@:Python hackernews.link(external=True)<CR>
+     u           *@:Python hackernews.save_pos()<CR>u:Python hackernews.recall_pos("undo")<CR>
+     <C-R>       *@:Python hackernews.save_pos()<CR><C-R>:Python hackernews.recall_pos("redo")<CR>
+
+Do (Test opening link item w/ url):
+  :HackerNews\<cr>
+  cc[9015621]\<esc>o
+
+Then (Test link w/ url opened):
+  AssertEqual getline(1), 'Show HN: vim-hackernews (github.com)'
+  AssertEqual getline(3), '[https://github.com/ryanss/vim-hackernews]'
+
+Do (Test opening link item w/ content):
+  :HackerNews\<cr>
+  cc[1474094]\<esc>o
+
+Then (Test link w/ content opened):
+  AssertEqual getline(1), 'Ask HN: What were your naivetés in your twenties?'
+  AssertEqual getline(3), '[http://news.ycombinator.com/item?id=1474094]'
+  AssertEqual getline(5), 'Oh the wise elders of Hack News,'
+
+Do (Test opening poll item):
+  :HackerNews\<cr>
+  cc[5736367]\<esc>o
+
+Then (Test poll item opened):
+  AssertEqual getline(1), 'Poll: Which is your primary text editor?'
+  AssertEqual getline(3), '[http://news.ycombinator.com/item?id=5736367]'
+  AssertEqual strpart(getline(5), 0, 2), 'Vi'
+  AssertEqual getline(6), '################################################################################'
+
+Do (Test opening comment item):
+  :HackerNews\<cr>
+  cc[9015621]\<esc>o
+  :36\<cr>o
+
+Then (Test comment item opened):
+  AssertEqual strpart(getline(1), 0, 17), 'Comment by atmosx'
+  AssertEqual strpart(getline(7), 0, 21), '    Comment by ryanss'
+
+Do (Test opening job item):
+  :HackerNews\<cr>
+  cc[9250739]\<esc>o
+
+Then (Test job item opened):
+  AssertEqual getline(1), 'Love Devops? Aptible Is Hiring Senior Platform Engineers'
+  AssertEqual getline(3), '[http://news.ycombinator.com/item?id=9250739]'
+  AssertEqual getline(5), '_Brooklyn/Remote_'
