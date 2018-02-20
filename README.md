@@ -3,9 +3,9 @@ vim-hackernews
 
 Browse [Hacker News](https://news.ycombinator.com) inside Vim.
 
-![Hacker News Front Page in Vim](https://github.com/ryanss/vim-hackernews/raw/master/screenshots/vim-hackernews-home.png)
+![Hacker News Front Page in Vim](https://github.com/adelarsq/vim-hackernews/raw/master/screenshots/vim-hackernews-home.png)
 
-![Hacker News Comments in Vim](https://github.com/ryanss/vim-hackernews/raw/master/screenshots/vim-hackernews-item.png)
+![Hacker News Comments in Vim](https://github.com/adelarsq/vim-hackernews/raw/master/screenshots/vim-hackernews-item.png)
 
 Uses [cheeaun's Unofficial Hacker News API](https://github.com/cheeaun/node-hnapi)
 to retrieve home page stories and comments and
@@ -49,17 +49,17 @@ Installation
 
 ##### Pathogen (https://github.com/tpope/vim-pathogen)
 ```bash
-git clone https://github.com/ryanss/vim-hackernews ~/.vim/bundle/vim-hackernews
+git clone https://github.com/adelarsq/vim-hackernews ~/.vim/bundle/vim-hackernews
 ```
 
 ##### Vundle (https://github.com/gmarik/vundle)
 ```
-Plugin 'ryanss/vim-hackernews'
+Plugin 'adelarsq/vim-hackernews'
 ```
 
 ##### NeoBundle (https://github.com/Shougo/neobundle.vim)
 ```
-NeoBundle 'ryanss/vim-hackernews'
+NeoBundle 'adelarsq/vim-hackernews'
 ```
 
 
@@ -74,8 +74,8 @@ $ vim -c Vader! tests.vader
 Contributions
 -------------
 
-[Issues](https://github.com/ryanss/vim-hackernews/issues) and
-[Pull Requests](https://github.com/ryanss/vim-hackernews/pulls) are always
+[Issues](https://github.com/adelarsq/vim-hackernews/issues) and
+[Pull Requests](https://github.com/adelarsq/vim-hackernews/pulls) are always
 welcome!
 
 
@@ -83,4 +83,4 @@ License
 -------
 
 Code is available according to the MIT License
-(see [LICENSE](https://github.com/ryanss/vim-hackernews/raw/master/LICENSE)).
+(see [LICENSE](https://github.com/adelarsq/vim-hackernews/raw/master/LICENSE)).
