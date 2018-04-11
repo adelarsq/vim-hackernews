@@ -1,7 +1,7 @@
 vim-hackernews
 ==============
 
-Browse [Hacker News](https://news.ycombinator.com) inside Vim.
+Browse [Hacker News](https://news.ycombinator.com) inside Vim. Fork from [vim-hackernews](https://vim.sourceforge.io/scripts/script.php?script_id=5108) which is no longer maintained.
 
 ![Hacker News Front Page in Vim](https://github.com/adelarsq/vim-hackernews/raw/master/screenshots/vim-hackernews-home.png)
 
