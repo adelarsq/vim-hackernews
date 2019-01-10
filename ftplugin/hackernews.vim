@@ -11,7 +11,7 @@
 
 if has('python')
     command! -nargs=1 Python python3 <args>
-if has('python2')
+elseif has('python2')
     command! -nargs=1 Python python <args>
 elseif has('python3')
     command! -nargs=1 Python python3 <args>
