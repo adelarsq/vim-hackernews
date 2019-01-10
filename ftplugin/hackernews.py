@@ -5,9 +5,10 @@
 #  Browse Hacker News (news.ycombinator.com) inside Vim.
 #
 #  Author:  ryanss <ryanssdev@icloud.com>
-#  Website: https://github.com/ryanss/vim-hackernews
+#  Mainteiner: Adelar da Silva Queiróz
+#  Website: https://github.com/adelarsq/vim-hackernews
 #  License: MIT (see LICENSE file)
-#  Version: 0.3-dev
+#  Version: 0.4-dev
 
 
 from __future__ import print_function, division
