@@ -106,6 +106,7 @@ def main():
     vim.command("edit .hackernews")
     vim.command("setlocal noswapfile")
     vim.command("setlocal buftype=nofile")
+    vim.command("setlocal cc=")
 
     if vim.eval("changenr()") == "1":
         vim.command("setlocal undolevels=-1")
