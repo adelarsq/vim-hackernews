@@ -105,6 +105,7 @@ def time_ago(timestamp):
 def main():
     vim.command("edit .hackernews")
     vim.command("setlocal noswapfile")
+    vim.command("setlocal nonumber")
     vim.command("setlocal buftype=nofile")
     vim.command("setlocal cc=")
 
